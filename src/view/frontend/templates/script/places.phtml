@@ -1,0 +1,18 @@
+<?php
+/**
+ * Copyright © Fronto Studio. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+?>
+<?php if ($block->isEnabled()) : ?>
+<script>
+require([
+    'FrontoStudio_AddressAutocomplete/js/autocomplete',
+    'async!https://maps.googleapis.com/maps/api/js?key=<?php echo $block->getGoogleApiKey(); ?>&libraries=places&callback=!callback'
+], function(fa){
+        window['renderStreetField'] = function() {
+            fa();
+        };
+});
+</script>
+<?php endif; ?>

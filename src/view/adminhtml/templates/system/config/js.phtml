@@ -1,0 +1,36 @@
+<?php
+/**
+ * Copyright © Fronto Studio. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+
+// @codingStandardsIgnoreFile
+
+?>
+<?php if ($block->getRequest()->getParam('section') == 'shipping') : ?>
+<script>
+require([
+    'prototype',
+    'async!https://maps.googleapis.com/maps/api/js?key=<?php echo $block->getGoogleApiKey(); ?>&callback=!callback'
+], function () {
+	var geocode = new google.maps.Geocoder();
+    $('shipping_origin_street_line1').observe('change', function() {
+	    var address = $('shipping_origin_street_line1').value;
+	    if ($('shipping_origin_street_line2').value) {
+		address = address + ',' + $('shipping_origin_street_line2').value;
+	    }
+	    address = address + ',' + $('shipping_origin_city').value + ',' + $('shipping_origin_region_id').value + ',' + $('shipping_origin_postcode').value + ',' + $('shipping_origin_country_id').value;
+	geocode.geocode({
+	    	address: address
+		}, function (results, status) {
+			if (status == 'OK') {
+				var latlong = results[0].geometry.location;
+
+				$('shipping_origin_latitude').value = latlong.lat();
+				$('shipping_origin_longitude').value = latlong.lng();
+			}
+		});
+    });
+});
+</script>
+<?php endif; ?>

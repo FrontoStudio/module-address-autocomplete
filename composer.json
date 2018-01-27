@@ -1,0 +1,20 @@
+{
+    "name": "fronto-studio/module-address-autocomplete",
+    "description": "N/A",
+    "require": {
+        "php": "7.0.2|7.0.4|~7.0.6|~7.1.0",
+    },
+    "type": "magento2-module",
+    "version": "1.0.0",
+    "license": [
+        "GNU GPL-3.0"
+    ],
+    "autoload": {
+        "files": [
+            "src/registration.php"
+        ],
+        "psr-4": {
+            "FrontoStudio\\AddressAutocomplete\\": "src"
+        }
+    }
+}
